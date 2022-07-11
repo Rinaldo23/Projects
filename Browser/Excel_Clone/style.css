@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+/***************** Page-Content ******************/
+.page-actions-cont {
+    height: 3rem;
+    background-color: #218c74;
+    display: flex;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+.page-action {
+    min-width: 3.5rem;
+    padding-left: 1rem;
+    color: #f1f2f6;
+    display: flex;
+    justify-content: center;
+}
+/***************** Cell Property *****************/
+.cell-prop-actions-cont {
+    height: 3rem;
+    background-color: lightblue;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
+.cell-prop-actions-cont > * {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.cell-prop-actions-cont > select {
+    padding: 0.2rem;
+    outline: none;
+    border-radius: 3px;
+    border: none;
+}
+
+/******************* Formula Container ****************/
+.formula-actions-container {
+    height: 3rem;
+    background-color: lightpink;
+}
+
+.grid-cont {
+    height: calc(100vh - 3rem - 3rem - 3rem - 3rem);
+    background-color: lightgrey;
+}
+
+.sheet-actions-cont {
+    height: 3rem;
+    background-color: rgb(167, 167, 52);
+}
