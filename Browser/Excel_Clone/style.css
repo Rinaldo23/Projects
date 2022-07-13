@@ -66,6 +66,7 @@ body {
 
 .address_bar {
     width: 5rem;
+    text-align: center;
 }
 
 .formula-icon {

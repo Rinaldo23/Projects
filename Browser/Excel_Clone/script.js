@@ -1,6 +1,7 @@
 let leftColCont = document.querySelector(".left-col-cont");
 let topRowCont = document.querySelector(".top-row-cont");
 let cellGridCont = document.querySelector(".cell-grid-cont");
+let addressBar = document.querySelector(".address_bar");
 
 let rows = 100;
 let cols = 26;
@@ -28,8 +29,17 @@ for( let i = 0 ; i < rows ; i++){
         gridCell.setAttribute("class", "grid-cell");
         gridCell.setAttribute("contenteditable", "true");
         rowCont.appendChild(gridCell);
-        // getCellAddress(cell, i, j);
+        getCellAddress(gridCell, i, j);
     }
     cellGridCont.appendChild(rowCont);
 }
 
+
+// addressBar Implementation
+function getCellAddress(cell, row, col){
+    cell.addEventListener("click", function(e){
+        rowID = row + 1;
+        colID = String.fromCharCode(65 + col);
+        addressBar.value = `${colID}${rowID}`;
+    })
+}
