@@ -2,96 +2,85 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <title>Excel WorkBook</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <title>Excel WorkBook</title>
 </head>
 
 <body>
-    <div class="page-actions-cont">
-        <div class="page-action">Home</div>
-        <div class="page-action">File</div>
-        <div class="page-action">Insert</div>
-        <div class="page-action">Layout</div>
-        <div class="page-action">Help</div>
-    </div>
-    <div class="cell-prop-actions-cont">
-        <span class="material-symbols-outlined">
-            content_copy
-        </span>
-        <span class="material-symbols-outlined">
-            content_cut
-        </span>
-        <span class="material-symbols-outlined">
-            content_paste
-        </span>
-        <select class="font-family-prop">
-            <option value="monospace">Monospace</option>
-            <option value="sans-serif">Sans-Serif</option>
-            <option value="fantasy">Fantasy</option>
-            <option value="cursive">Cursive</option>
-        </select>
-        <select class="font-size-prop">
-            <option value="14">14</option>
-            <option value="16">16</option>
-            <option value="18">18</option>
-            <option value="20">20</option>
-        </select>
+  <div class="page-actions-cont">
+    <div class="page-action">Home</div>
+    <div class="page-action">File</div>
+    <div class="page-action">Insert</div>
+    <div class="page-action">Layout</div>
+    <div class="page-action">Help</div>
+  </div>
+  <div class="cell-prop-actions-cont">
+    <span class="material-symbols-outlined"> content_copy </span>
+    <span class="material-symbols-outlined"> content_cut </span>
+    <span class="material-symbols-outlined"> content_paste </span>
+    <select class="font-family-prop">
+      <option value="monospace">Monospace</option>
+      <option value="sans-serif">Sans-Serif</option>
+      <option value="fantasy">Fantasy</option>
+      <option value="cursive">Cursive</option>
+    </select>
+    <select class="font-size-prop">
+      <option value="14">14</option>
+      <option value="16">16</option>
+      <option value="18">18</option>
+      <option value="20">20</option>
+    </select>
 
-        <span class="material-symbols-outlined">
-            format_bold
-        </span>
-        <span class="material-symbols-outlined">
-            format_italic
-        </span>
-        <span class="material-symbols-outlined">
-            format_underlined
-        </span>
-        <span class="material-symbols-outlined">
-            format_align_left
-        </span>
-        <span class="material-symbols-outlined">
-            format_align_center
-        </span>
-        <span class="material-symbols-outlined">
-            format_align_right
-        </span>
-
+    <span class="material-symbols-outlined"> format_bold </span>
+    <span class="material-symbols-outlined"> format_italic </span>
+    <span class="material-symbols-outlined"> format_underlined </span>
+    <span class="material-symbols-outlined"> format_align_left </span>
+    <span class="material-symbols-outlined"> format_align_center </span>
+    <span class="material-symbols-outlined"> format_align_right </span>
+    <div class="text-color-prop">
+      <span class="material-symbols-outlined">
+        format_color_text
+      </span>
+      <input type="color" class="font-color">
     </div>
-    <div class="formula-actions-container">
-        <input type="text" value="" class="address_bar" readonly>
-        <img class="formula-icon" src="https://img.icons8.com/ios/50/000000/formula-fx.png" />
-        <input type="text" class="formula_bar">
+    <div class="fill_color_prop">
+      <span class="material-symbols-outlined">
+        format_color_fill
+      </span>
+      <input type="color" class="cell-color">
     </div>
 
 
-    <div class="grid-cont">
-        <div class="top-left-dummy-box"></div>
-        <div class="left-col-cont">
-        </div>
-        <div class="cell-grid-cont">
-            <div class="top-row-cont"></div>
-        </div>
+  </div>
+  <div class="formula-actions-container">
+    <input type="text" value="" class="address_bar" readonly />
+    <img class="formula-icon" src="https://img.icons8.com/ios/50/000000/formula-fx.png" />
+    <input type="text" class="formula_bar" />
+  </div>
 
+  <div class="grid-cont">
+    <div class="top-left-dummy-box"></div>
+    <div class="left-col-cont"></div>
+    <div class="cell-grid-cont">
+      <div class="top-row-cont"></div>
     </div>
+  </div>
 
-
-    <div class="sheet-actions-cont">
-        <div class="sheet-icon">
-            <span class="material-symbols-outlined">
-                post_add
-            </span>
-        </div>
-        <div class="sheet-container">
-            <div class="sheets">Sheet1</div>
-        </div>
+  <div class="sheet-actions-cont">
+    <div class="sheet-icon">
+      <span class="material-symbols-outlined"> post_add </span>
     </div>
+    <div class="sheet-container">
+      <div class="sheets">Sheet1</div>
+    </div>
+  </div>
 
-    <script src="./script.js"></script>
+  <script src="./script.js"></script>
 </body>
 
 </html>
