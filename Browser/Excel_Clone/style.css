@@ -22,10 +22,10 @@ body {
     display: flex;
     justify-content: center;
 }
-/***************** Cell Property *****************/
+/***************** Cell Property Container*****************/
 .cell-prop-actions-cont {
     height: 3rem;
-    background-color: lightblue;
+    background-color: lightgrey;
     display: flex;
     align-items: center;
     padding: 1rem;
@@ -46,16 +46,36 @@ body {
 /******************* Formula Container ****************/
 .formula-actions-container {
     height: 3rem;
-    background-color: lightpink;
+    background-color: rgb(228, 228, 228);
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+}
+.formula-actions-container > *{
+    margin-right: 0.8rem;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    height: 1.6rem;
+}
+.address_bar {
+    width: 6rem;
+}
+.formula-icon {
+    height: 1.7rem;
+}
+.formula_bar {
+    width: calc(100vw - 6rem - 0.24rem - 0.5rem);
 }
 
+/******************* Grid Container ****************/
 .grid-cont {
-    height: calc(100vh - 3rem - 3rem - 3rem - 3rem);
+    height: calc(100vh - 3rem - 3rem - 3rem - 2rem);
     background-color: white;
 }
 /*********************** Sheet Container ***************/
 .sheet-actions-cont {
-    height: 3rem;
+    height: 2rem;
     background-color: lightgrey;
     display: flex;
     align-items: center;
@@ -76,7 +96,7 @@ body {
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    text-decoration: underline;
+    /* text-decoration: underline; */
     font-size:large ;
 }
 .sheets {
