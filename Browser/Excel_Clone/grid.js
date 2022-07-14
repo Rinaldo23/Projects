@@ -27,6 +27,9 @@ for (let i = 0; i < rows; i++) {
     let gridCell = document.createElement("div");
     gridCell.setAttribute("class", "grid-cell");
     gridCell.setAttribute("contenteditable", "true");
+    gridCell.setAttribute("rid", i);
+    gridCell.setAttribute("cid", j);
+    gridCell.setAttribute("spellcheck", "false");
     rowCont.appendChild(gridCell);
     getCellAddress(gridCell, i, j);
   }
@@ -41,3 +44,7 @@ function getCellAddress(cell, row, col) {
     addressBar.value = `${colID}${rowID}`;
   });
 }
+
+
+let firstCellAddress = document.querySelector(".grid-cell");
+firstCellAddress.click();

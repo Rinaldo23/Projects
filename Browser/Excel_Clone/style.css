@@ -33,8 +33,8 @@ body {
     padding: 1rem;
 }
 
-.cell-prop-actions-cont>* {
-    display: inline-block;
+.cell-prop-actions-cont > * {
+    display: flex;
     margin-right: 1rem;
 }
 
@@ -44,16 +44,19 @@ body {
     border-radius: 3px;
     border: none;
 }
-.text-color-prop {
+.text-color-prop, .fill_color_prop {
     position: relative;
 }
-.text-color-prop > input {
+.text-color-prop > input, .fill_color_prop > input {
     opacity: 0;
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
+}
+.fill_color_prop > span {
+    padding-bottom: 0.35rem;
 }
 
 /*************************** Formula Container ****************************/
