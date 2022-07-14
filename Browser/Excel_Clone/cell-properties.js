@@ -4,9 +4,9 @@ let boldBtn = document.querySelector(".bold");
 let italicBtn = document.querySelector(".italic");
 let underlineBtn = document.querySelector(".underline");
 let alignment = document.querySelectorAll(".alignment");
-let leftAlign = alignment[0];
-let centerAlign = alignment[1];
-let rightAlign = alignment[2];
+let leftAlignBtn = alignment[0];
+let centerAlignBtn = alignment[1];
+let rightAlignBtn = alignment[2];
 let fontColorBtn = document.querySelector(".font-color");
 let bgColorBtn = document.querySelector(".cell-color");
 
@@ -37,12 +37,12 @@ boldBtn.addEventListener("click", (e) => {
 
     // Jasbir Sir - using if else
     isSelected = boldBtn.classList[2];
-    if(isSelected == "Selected"){
+    if (isSelected == "Selected") {
         boldBtn.classList.remove("Selected");
         cell.style.fontWeight = "normal";
         cellProp.bold = "false";
         boldBtn.style.backgroundColor = inactiveColorProp;
-    }else{
+    } else {
         boldBtn.classList.add("Selected");
         cell.style.fontWeight = "bold";
         cellProp.bold = "true";
@@ -53,7 +53,7 @@ boldBtn.addEventListener("click", (e) => {
     // cellProp.bold = !cellProp.bold; // Data change
     // cell.style.fontWeight = cellProp.bold ? "bold" : "normal"; // UI change (1)
     // boldBtn.style.backgroundColor = cellProp.bold ? activeColorProp : inactiveColorProp; // UI change (2)
-    
+
 })
 
 italicBtn.addEventListener("click", (e) => {
@@ -61,12 +61,12 @@ italicBtn.addEventListener("click", (e) => {
     let [cell, cellProp] = activeCellAndCellProp(address);
 
     isSelected = italicBtn.classList[2];
-    if(isSelected == "Selected"){
+    if (isSelected == "Selected") {
         italicBtn.classList.remove("Selected");
         cell.style.fontStyle = "normal";
         cellProp.italic = "false";
         italicBtn.style.backgroundColor = inactiveColorProp;
-    }else{
+    } else {
         italicBtn.classList.add("Selected");
         cell.style.fontStyle = "italic";
         cellProp.italic = "true";
@@ -83,12 +83,12 @@ underlineBtn.addEventListener("click", (e) => {
     let [cell, cellProp] = activeCellAndCellProp(address);
 
     isSelected = underlineBtn.classList[2];
-    if(isSelected == "Selected"){
+    if (isSelected == "Selected") {
         underlineBtn.classList.remove("Selected");
         cell.style.textDecoration = "none";
         cellProp.underline = "false";
         underlineBtn.style.backgroundColor = inactiveColorProp;
-    }else{
+    } else {
         underlineBtn.classList.add("Selected");
         cell.style.textDecoration = "underline";
         cellProp.underline = "true";
@@ -118,16 +118,46 @@ bgColorBtn.addEventListener("change", (e) => {
     bgColorBtn.value = cellProp.BgColor; // cell property btn change
 })
 
+for (let i = 0; i < alignment.length; i++) {
+    let element = alignment[i];
+    element.addEventListener("click", alignFn);
+}
+
+function alignFn(e) {
+    let address = addressBar.value;
+    let [cell, cellProp] = activeCellAndCellProp(address);
+
+    let clickedAlignBtn = e.target;
+    let alignValue = clickedAlignBtn.classList[2];
+    cellProp.alignment = alignValue; // Data change
+    cell.style.textAlign = cellProp.alignment; // UI change (1)
+
+    // We can use switch case also instead of loop
+    if (alignValue == "left") {
+        // UI change (2)
+        leftAlignBtn.style.backgroundColor = activeColorProp;
+        centerAlignBtn.style.backgroundColor = inactiveColorProp;
+        rightAlignBtn.style.backgroundColor = inactiveColorProp;
+    } else if (alignValue == "center") {
+        leftAlignBtn.style.backgroundColor = inactiveColorProp;
+        centerAlignBtn.style.backgroundColor = activeColorProp;
+        rightAlignBtn.style.backgroundColor = inactiveColorProp;
+    } else {
+        leftAlignBtn.style.backgroundColor = inactiveColorProp;
+        centerAlignBtn.style.backgroundColor = inactiveColorProp;
+        rightAlignBtn.style.backgroundColor = activeColorProp;
+    }
+}
 
 /***************************  Helper Funtions ************************/
-function activeCellAndCellProp(address){
+function activeCellAndCellProp(address) {
     let [rid, cid] = getRidCidfromAddressBar(address);
     let cell = document.querySelector(`.grid-cell[rid="${rid}"][cid="${cid}"]`);
     let cellProp = SheetDB[rid][cid];
     return [cell, cellProp];
 }
 
-function getRidCidfromAddressBar(address){
+function getRidCidfromAddressBar(address) {
     // address -> A1
     let rowId = address.slice(1);
     let colId = address.charCodeAt(0);

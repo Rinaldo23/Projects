@@ -160,6 +160,7 @@ body {
     width: 5rem;
     border: 1px solid #dfe4ea;
     outline: none;
+    padding-top: 0.3rem; /* To bring the text in cells to center */
 }
 
 /**************************** Sheet Container ****************************/
