@@ -1,32 +1,11 @@
-// Create SheetDB
-let SheetDB = [];
-
-for( let i = 0 ; i < rows ; i++){
-    let rowArr = [];
-    for( let j = 0 ; j < cols ; j++){
-        let cellObj = {
-            fontFamily : "monospace",
-            fontSize : "14",
-            bold : "false",
-            italic : "false",
-            underline : "false",
-            alignment : "left",
-            fontColor : "#000000",
-            BgColor : "#000000"
-        }
-        rowArr.push(cellObj);
-    }
-    SheetDB.push(rowArr);
-}
-
-let activeColorProp = "#d1d8e0";
-let inactiveColorProp = "#ecf0f1";
-
 let boldBtn = document.querySelector(".bold");
 let italicBtn = document.querySelector(".italic");
 let underlineBtn = document.querySelector(".underline");
 let fontFamilyBtn = document.querySelector(".font-family-prop");
 let fontSizeBtn = document.querySelector(".font-size-prop");
+
+let activeColorProp = "#d1d8e0";
+let inactiveColorProp = "#ecf0f1";
 
 boldBtn.addEventListener("click", (e) => {
     let address = addressBar.value;
@@ -61,7 +40,7 @@ italicBtn.addEventListener("click", (e) => {
     italicBtn.style.backgroundColor = cellProp.italic ? activeColorProp : inactiveColorProp; // UI change (2)   
 })
 
-underlineBtn.addEventListener("click", function() {
+underlineBtn.addEventListener("click", (e) => {
     let address = addressBar.value;
     let [cell, cellProp] = activeCellAndCellProp(address);
 
@@ -69,6 +48,16 @@ underlineBtn.addEventListener("click", function() {
     cell.style.textDecoration = cellProp.underline ? "underline" : "none"; // UI change (1)
     underlineBtn.style.backgroundColor = cellProp.underline ? activeColorProp : inactiveColorProp; // UI change (2)
 })
+
+fontFamilyBtn.addEventListener("click", (e) => {
+    let address = addressBar.value;
+    let [cell, cellProp] = activeCellAndCellProp(address);
+
+    cellProp.fontFamily = fontFamilyBtn.value; // DB change
+    cell.style.fontFamily = cellProp.fontFamily;
+    fontFamilyBtn.value = cellProp.fontFamily;
+})
+
 
 /***************************  Helper Funtions ************************/
 function activeCellAndCellProp(address){
