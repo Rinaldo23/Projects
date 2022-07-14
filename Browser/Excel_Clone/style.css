@@ -38,6 +38,10 @@ body {
     margin-right: 1rem;
 }
 
+.cell-prop-actions-cont > *:hover {
+    cursor: pointer;
+}
+
 .cell-prop-actions-cont > select {
     padding: 0.2rem;
     outline: none;

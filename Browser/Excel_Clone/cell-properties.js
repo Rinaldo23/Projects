@@ -18,9 +18,15 @@ for( let i = 0 ; i < rows ; i++){
     }
     SheetDB.push(rowArr);
 }
+
 let activeColorProp = "#d1d8e0";
 let inactiveColorProp = "#ecf0f1";
+
 let boldBtn = document.querySelector(".bold");
+let italicBtn = document.querySelector(".italic");
+let underlineBtn = document.querySelector(".underline");
+let fontFamilyBtn = document.querySelector(".font-family-prop");
+let fontSizeBtn = document.querySelector(".font-size-prop");
 
 boldBtn.addEventListener("click", (e) => {
     let address = addressBar.value;
@@ -46,6 +52,17 @@ boldBtn.addEventListener("click", (e) => {
     // }
 })
 
+italicBtn.addEventListener("click", (e) => {
+    let address = addressBar.value;
+    let [cell, cellProp] = activeCellAndCellProp(address);
+
+    cellProp.italic = !cellProp.italic; // Data change
+    cell.style.fontStyle = cellProp.italic ? "italic" : "normal"; // UI change (1)
+    italicBtn.style.backgroundColor = cellProp.italic ? activeColorProp : inactiveColorProp; // UI change (2)   
+})
+
+
+/***************************  Helper Funtions ************************/
 function activeCellAndCellProp(address){
     let [rid, cid] = getRidCidfromAddressBar(address);
     let cell = document.querySelector(`.grid-cell[rid="${rid}"][cid="${cid}"]`);
