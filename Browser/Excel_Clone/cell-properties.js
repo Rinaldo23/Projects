@@ -61,6 +61,14 @@ italicBtn.addEventListener("click", (e) => {
     italicBtn.style.backgroundColor = cellProp.italic ? activeColorProp : inactiveColorProp; // UI change (2)   
 })
 
+underlineBtn.addEventListener("click", function() {
+    let address = addressBar.value;
+    let [cell, cellProp] = activeCellAndCellProp(address);
+
+    cellProp.underline = !cellProp.underline; // Data change
+    cell.style.textDecoration = cellProp.underline ? "underline" : "none"; // UI change (1)
+    underlineBtn.style.backgroundColor = cellProp.underline ? activeColorProp : inactiveColorProp; // UI change (2)
+})
 
 /***************************  Helper Funtions ************************/
 function activeCellAndCellProp(address){
