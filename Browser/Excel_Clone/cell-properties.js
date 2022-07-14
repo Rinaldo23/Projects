@@ -109,6 +109,16 @@ fontColorBtn.addEventListener("change", (e) => {
     fontColorBtn.value = cellProp.fontColor; // cell property btn change
 })
 
+bgColorBtn.addEventListener("change", (e) => {
+    let address = addressBar.value;
+    let [cell, cellProp] = activeCellAndCellProp(address);
+
+    cellProp.BgColor = bgColorBtn.value; // DB Change
+    cell.style.backgroundColor = cellProp.BgColor; // Cell change
+    bgColorBtn.value = cellProp.BgColor; // cell property btn change
+})
+
+
 /***************************  Helper Funtions ************************/
 function activeCellAndCellProp(address){
     let [rid, cid] = getRidCidfromAddressBar(address);
