@@ -7,8 +7,10 @@ let alignment = document.querySelectorAll(".alignment");
 let leftAlignBtn = alignment[0];
 let centerAlignBtn = alignment[1];
 let rightAlignBtn = alignment[2];
+let justifyAlignBtn = alignment[3];
 let fontColorBtn = document.querySelector(".font-color");
 let bgColorBtn = document.querySelector(".cell-color");
+let allCells = document.querySelectorAll(".grid-cell");
 
 let activeColorProp = "#d1d8e0";
 let inactiveColorProp = "#ecf0f1";
@@ -122,7 +124,6 @@ for (let i = 0; i < alignment.length; i++) {
     let element = alignment[i];
     element.addEventListener("click", alignFn);
 }
-
 function alignFn(e) {
     let address = addressBar.value;
     let [cell, cellProp] = activeCellAndCellProp(address);
@@ -130,23 +131,90 @@ function alignFn(e) {
     let clickedAlignBtn = e.target;
     let alignValue = clickedAlignBtn.classList[2];
     cellProp.alignment = alignValue; // Data change
-    cell.style.textAlign = cellProp.alignment; // UI change (1)
+    cell.style.textAlign = cellProp.alignment; // UI change (1) -> In cells
 
     // We can use switch case also instead of loop
+    // UI change (2) -> Cell property bar 
     if (alignValue == "left") {
         // UI change (2)
         leftAlignBtn.style.backgroundColor = activeColorProp;
         centerAlignBtn.style.backgroundColor = inactiveColorProp;
         rightAlignBtn.style.backgroundColor = inactiveColorProp;
+        justifyAlignBtn.style.backgroundColor = inactiveColorProp;
     } else if (alignValue == "center") {
         leftAlignBtn.style.backgroundColor = inactiveColorProp;
         centerAlignBtn.style.backgroundColor = activeColorProp;
         rightAlignBtn.style.backgroundColor = inactiveColorProp;
-    } else {
+        justifyAlignBtn.style.backgroundColor = inactiveColorProp;
+    } else if(alignValue == "right"){
         leftAlignBtn.style.backgroundColor = inactiveColorProp;
         centerAlignBtn.style.backgroundColor = inactiveColorProp;
         rightAlignBtn.style.backgroundColor = activeColorProp;
+        justifyAlignBtn.style.backgroundColor = inactiveColorProp;
+    } else {
+        leftAlignBtn.style.backgroundColor = inactiveColorProp;
+        centerAlignBtn.style.backgroundColor = inactiveColorProp;
+        rightAlignBtn.style.backgroundColor = inactiveColorProp;
+        justifyAlignBtn.style.backgroundColor = activeColorProp;
     }
+}
+
+for (let i = 0; i < allCells.length; i++) {
+    let cell = allCells[i];
+    addDefaultCellPropsFromDB(cell);
+    // cell.addEventListener("click", cellFn); --> Line not working 
+}
+function addDefaultCellPropsFromDB(cell) {
+    cell.addEventListener("click", (e) => {
+        // This won't work here!!
+        // let address = addressBar.value;
+        // let [rid, cid] = getRidCidfromAddressBar(address);
+
+        let rid = cell.getAttribute("rid");
+        let cid = cell.getAttribute("cid");
+        let cellProp = SheetDB[rid][cid];
+
+        // UI change (1) -> In cells
+        cell.style.fontFamily = cellProp.fontFamily;
+        cell.style.fontSize = cellProp.fontSize + "px";
+        cell.style.fontWeight = cellProp.bold ? "bold" : "normal";
+        cell.style.fontStyle = cellProp.italic ? "italic" : "normal";
+        cell.style.textDecoration = cellProp.underline ? "underline" : "none";
+        cell.style.color = cellProp.fontColor;
+        cell.style.backgroundColor = cellProp.BgColor;
+        cell.style.textAlign = cellProp.alignment;
+
+        // UI change (2) -> In cell prop menu
+        fontFamilyBtn.value = cellProp.fontFamily;
+        fontSizeBtn.value = cellProp.fontSize;
+        boldBtn.style.backgroundColor = cellProp.bold ? activeColorProp : inactiveColorProp;
+        italicBtn.style.backgroundColor = cellProp.italic ? activeColorProp : inactiveColorProp;
+        underlineBtn.style.backgroundColor = cellProp.underline ? activeColorProp : inactiveColorProp;
+        fontColorBtn.value = cellProp.fontColor;
+        bgColorBtn.value = cellProp.BgColor;
+        if (cellProp.alignment == "left") {
+            // UI change (2)
+            leftAlignBtn.style.backgroundColor = activeColorProp;
+            centerAlignBtn.style.backgroundColor = inactiveColorProp;
+            rightAlignBtn.style.backgroundColor = inactiveColorProp;
+            justifyAlignBtn.style.backgroundColor = inactiveColorProp;
+        } else if (cellProp.alignment == "center") {
+            leftAlignBtn.style.backgroundColor = inactiveColorProp;
+            centerAlignBtn.style.backgroundColor = activeColorProp;
+            rightAlignBtn.style.backgroundColor = inactiveColorProp;
+            justifyAlignBtn.style.backgroundColor = inactiveColorProp;
+        } else if (cellProp.alignment == "right"){
+            leftAlignBtn.style.backgroundColor = inactiveColorProp;
+            centerAlignBtn.style.backgroundColor = inactiveColorProp;
+            rightAlignBtn.style.backgroundColor = activeColorProp;
+            justifyAlignBtn.style.backgroundColor = inactiveColorProp;
+        } else {
+            leftAlignBtn.style.backgroundColor = inactiveColorProp;
+            centerAlignBtn.style.backgroundColor = inactiveColorProp;
+            rightAlignBtn.style.backgroundColor = inactiveColorProp;
+            justifyAlignBtn.style.backgroundColor = activeColorProp;
+        }
+    })
 }
 
 /***************************  Helper Funtions ************************/

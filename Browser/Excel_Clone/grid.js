@@ -46,5 +46,5 @@ function getCellAddress(cell, row, col) {
 }
 
 
-// let firstCellAddress = document.querySelector(".grid-cell");
-// firstCellAddress.click();
+let firstCellAddress = document.querySelector(".grid-cell");
+firstCellAddress.click();

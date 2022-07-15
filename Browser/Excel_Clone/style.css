@@ -14,14 +14,24 @@ body {
     display: flex;
     align-items: center;
     padding-top: 1rem;
+    padding-left: 1rem;
 }
 
 .page-action {
-    min-width: 3.5rem;
-    padding-left: 1rem;
+    min-width: 4rem;
+    /* padding-left: 1rem; */
     color: #f1f2f6;
     display: flex;
     justify-content: center;
+}
+
+.file{
+    background-color: #ecf0f1;
+    color: black;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
 }
 
 /*************************** Cell Property Container **********************/
@@ -159,8 +169,7 @@ body {
     height: 2rem;
     width: 5rem;
     border: 1px solid #dfe4ea;
-    outline: none;
-    padding-top: 0.3rem; /* To bring the text in cells to center */
+    outline-color: rgb(27, 216, 198);
 }
 
 /**************************** Sheet Container ****************************/
