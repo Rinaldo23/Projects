@@ -6,6 +6,9 @@ let addressBar = document.querySelector(".address_bar");
 let rows = 100;
 let cols = 26;
 
+/**
+ * todo :=> For creating the left-column
+ */
 for (let i = 0; i < rows; i++) {
   let colCell = document.createElement("div");
   colCell.setAttribute("class", "col-cell");
@@ -13,6 +16,9 @@ for (let i = 0; i < rows; i++) {
   leftColCont.appendChild(colCell);
 }
 
+/**
+ * todo :=> For creating the top-row
+ */
 for (let i = 0; i < cols; i++) {
   let rowCell = document.createElement("div");
   rowCell.setAttribute("class", "row-cell");
@@ -20,6 +26,9 @@ for (let i = 0; i < cols; i++) {
   topRowCont.appendChild(rowCell);
 }
 
+/**
+ * todo :=> For creating the grid-cells 
+ */
 for (let i = 0; i < rows; i++) {
   let rowCont = document.createElement("div");
   rowCont.setAttribute("class", "row-cont");

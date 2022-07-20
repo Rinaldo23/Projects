@@ -15,22 +15,33 @@ let allCells = document.querySelectorAll(".grid-cell");
 let activeColorProp = "#d1d8e0";
 let inactiveColorProp = "#ecf0f1";
 
+/**
+ * ! Logic is same for all the Menu Bar buttons
+ * todo Logic : 1. When we click on fontFamilyBtn we want to change the font-family of the selected cell.
+ * todo Logic : 2. So we add an event-listener on fontfamiltBtn with "change".
+ * todo Logic : 3. We fetch the address of the selected cell from the address bar.
+ * todo Logic : 4. Then we fetch the active cell & its cell-properties (from DB) using the fn activeCellAndCellProp which takes an input parameter address.
+ * todo Logic : 5. First we make changes in the DataBase for the cell-property.
+ * todo Logic : 6. Then we make changes in the UI : 
+ * todo Logic :             6.1 -> In cell             
+ * todo Logic :             6.1 -> In the fontfamilyBtn              
+ */
 fontFamilyBtn.addEventListener("change", (e) => {
     let address = addressBar.value;
     let [cell, cellProp] = activeCellAndCellProp(address);
 
-    cellProp.fontFamily = fontFamilyBtn.value; // DB change
-    cell.style.fontFamily = cellProp.fontFamily;
-    fontFamilyBtn.value = cellProp.fontFamily;
+    cellProp.fontFamily = fontFamilyBtn.value;      // DB change
+    cell.style.fontFamily = cellProp.fontFamily;    // UI change in cell
+    fontFamilyBtn.value = cellProp.fontFamily;      // UI change in btn
 })
 
 fontSizeBtn.addEventListener("change", (e) => {
     let address = addressBar.value;
     let [cell, cellProp] = activeCellAndCellProp(address);
 
-    cellProp.fontSize = fontSizeBtn.value; // DB change
-    cell.style.fontSize = cellProp.fontSize + "px";
-    fontSizeBtn.value = cellProp.fontSize;
+    cellProp.fontSize = fontSizeBtn.value;              // DB change
+    cell.style.fontSize = cellProp.fontSize + "px";     // UI change in cell
+    fontSizeBtn.value = cellProp.fontSize;              // UI change in btn
 })
 
 boldBtn.addEventListener("click", (e) => {
@@ -38,6 +49,12 @@ boldBtn.addEventListener("click", (e) => {
     let [cell, cellProp] = activeCellAndCellProp(address);
 
     // Jasbir Sir - using if else
+    /** 
+     * todo Logic : 1 -> .classList will fetch all the classes present in bold btn.
+     * todo Logic : 2 -> .classList[2] will check if bold btn has "Selected" class.
+     * todo Logic : 3 -> If class is not present we will add it...vice versa.
+     * todo Logic : 4 -> Based on the presence or absence of "Selected" class we will make changes in UI and DB.
+     */
     isSelected = boldBtn.classList[2];
     if (isSelected == "Selected") {
         boldBtn.classList.remove("Selected");
@@ -146,7 +163,7 @@ function alignFn(e) {
         centerAlignBtn.style.backgroundColor = activeColorProp;
         rightAlignBtn.style.backgroundColor = inactiveColorProp;
         justifyAlignBtn.style.backgroundColor = inactiveColorProp;
-    } else if(alignValue == "right"){
+    } else if (alignValue == "right") {
         leftAlignBtn.style.backgroundColor = inactiveColorProp;
         centerAlignBtn.style.backgroundColor = inactiveColorProp;
         rightAlignBtn.style.backgroundColor = activeColorProp;
@@ -159,6 +176,12 @@ function alignFn(e) {
     }
 }
 
+/**
+ * ! Applying default values to each cell
+ * todo Logic : 1. Iterarting through all the cells.
+ * todo Logic : 2. Calling the fn for applying default values from database.
+ * todo Logic : 3. Fn takes in a paramter "cell".
+ */
 for (let i = 0; i < allCells.length; i++) {
     let cell = allCells[i];
     addDefaultCellPropsFromDB(cell);
@@ -166,7 +189,6 @@ for (let i = 0; i < allCells.length; i++) {
 }
 function addDefaultCellPropsFromDB(cell) {
     cell.addEventListener("click", (e) => {
-        // This won't work here!!
         // let address = addressBar.value;
         // let [rid, cid] = getRidCidfromAddressBar(address);
 
@@ -203,7 +225,7 @@ function addDefaultCellPropsFromDB(cell) {
             centerAlignBtn.style.backgroundColor = activeColorProp;
             rightAlignBtn.style.backgroundColor = inactiveColorProp;
             justifyAlignBtn.style.backgroundColor = inactiveColorProp;
-        } else if (cellProp.alignment == "right"){
+        } else if (cellProp.alignment == "right") {
             leftAlignBtn.style.backgroundColor = inactiveColorProp;
             centerAlignBtn.style.backgroundColor = inactiveColorProp;
             rightAlignBtn.style.backgroundColor = activeColorProp;
@@ -217,7 +239,11 @@ function addDefaultCellPropsFromDB(cell) {
     })
 }
 
-/***************************  Helper Funtions ************************/
+/**************************************** Helper Funtions *********************************************/
+/** 
+ * todo :=> Fn takes a paramter address (A1) in string format.
+ * todo :=> returns the active cell and its cell-properties from DB. 
+ */
 function activeCellAndCellProp(address) {
     let [rid, cid] = getRidCidfromAddressBar(address);
     let cell = document.querySelector(`.grid-cell[rid="${rid}"][cid="${cid}"]`);
@@ -225,6 +251,10 @@ function activeCellAndCellProp(address) {
     return [cell, cellProp];
 }
 
+/** 
+ * todo :=> Fn takes a paramter address (A1) in string format.
+ * todo :=> returns the row-ID and column-ID. 
+ */
 function getRidCidfromAddressBar(address) {
     // address -> A1
     let rowId = address.slice(1);
